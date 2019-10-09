@@ -1,0 +1,120 @@
+{% load static %}
+<!doctype html>
+<html lang="en">
+
+<head>
+  <!-- Required meta tags -->
+  <link rel="shortcut icon" type="image/x-icon" href="{% static 'images/favicon.png' %}" />
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+  <!-- Bootstrap CSS -->
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+    integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+  <link rel="stylesheet" href="{% static 'css/style.css' %}">
+  <title>SSD Gene</title>
+</head>
+
+<body>
+  <nav id="navbar" class="navbar navbar-expand-lg navbar-light bg-light">
+    <a class="navbar-brand" href="#">SSD GENE</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+      aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav mr-auto">
+        <li class="nav-item active">
+          <a class="nav-link" href="#" onclick="location.href='{% url 'pages-home' %}'">Home</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#" onclick="location.href='{% url 'pages-results' %}'">Top Results</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#" onclick="location.href='{% url 'pages-methods' %}'">Methods</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#" onclick="location.href='{% url 'pages-about' %}'">About Us</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#" onclick="location.href='{% url 'pages-contacts' %}'">Contact</a>
+        </li>
+      </ul>
+    </div>
+  </nav>
+
+
+  <div id="aboutcard" style="position:relative; top:75px;" align="center">
+    <div class="card" style="width: 60rem;">
+      <div class="card-body">
+        <h5 class="card-title">About Us</h5>
+        <div id="bios" align="left">
+          <div class="bio clearfix">
+            <p><img class="bio-image" src="{% static 'images\hope2.jpg' %}" class="card-img-top" alt="hope lancaster">
+              Hope S. Lancaster, Ph.D., is a postdoctoral fellow at Arizona State University in the
+              Schools of Engineering and College of Health Solution. Her doctoral training was completed at Vanderbilt
+              University under the mentorship of Dr. Stephen Camarata. From 2015 to 2017, she was a postdoctoral
+              scholar in the Speech and Hearing Science department at Arizona State University and worked on projects
+              spanning the genetics of childhood apraxia of speech to the effectiveness of early intervention in
+              children with nonsyndromic cleft lip and/or palate. In August 2017, she began working on her research
+              funded by her NIH F32 training grant “Genotype-Phenotype Associations in Reading Disorders” under the
+              joint mentorship of Drs. Jing Li, Shelley Gray, and Valentin Dinu. Her research examines the shared
+              genetic etiology and behavioral symptomology for children with speech sound disorder, developmental
+              language disorder, and/or reading disorders and how understanding these shared traits can improve early
+              identification and intervention. Dr. Lancaster’s background in psychology, statistics, and communication
+              disorders has encouraged her to apply her knowledge of big data and data management to answer
+              translational research questions. </p>
+          </div>
+          <div class="bio">
+            <p><img class="bio-image" src="{% static 'images\tyler2.jpg' %}" class="card-img-top" alt="tyler">
+              Tyler Cork is a senior at ASU and also works full time as a Systems Administrator. Before working on his
+              Bachelors in Computer Science he went to Scottsdale Culinary Institute where he earned his Le Cordon Bleu
+              diploma and associates degree in Culinary Arts. He was born and raised in Arizona and enjoys golfing,
+              football, and spending time with his friends and family. </p>
+          </div>
+
+          <div class="bio">
+            <p><img class="bio-image" src="{% static 'images\camrie2.jpg' %}" class="card-img-top" alt="camrie">
+              Camrie Madsen is an undergraduate student at Arizona State University studying computer science. She
+              previously attended Northern Arizona University and received a bachelor's degree in Elementary Education.
+              After leaving the realm of education, she decided to attend school again at ASU. These days, she enjoys
+              rock climbing, trying to learn piano, and spending time with her family. </p>
+          </div>
+          <div class="bio">
+            <p><img class="bio-image" src="{% static 'images\profilephoto3.png' %}" class="card-img-top" alt="maria">
+              Maria Predtechenskaya is an Arizona State University bachelors student studying Microbiology and Computer
+              Science. She hopes to get a PhD in Microbiology and become a professor, studying ways to eradicate chronic
+              infections due to biofilms. For this project, she hopes that the database will relieve efforts of many who
+              study speech and language disorders.
+            </p>
+          </div>
+          <div class="bio">
+            <p><img class="bio-image" src="{% static 'images\maryam2.jpg' %}" class="card-img-top" alt="maryam">
+              Maryam Vahdati Nia is a senior majoring in computer science at the Arizona State University. She is to
+              graduate with a bachelor's degree in December 2019. She plans to continue her studies towards a master’s
+              in computer science. In August 2019, she started working on the research database as her capstone project.
+              Her areas of interest include bioinformatics and Internet of Things. Maryam, belongs to the database
+              group. </p>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+  </div>
+
+  <!-- Optional JavaScript -->
+  <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+    integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+    crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+    integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+    crossorigin="anonymous"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+    integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+    crossorigin="anonymous"></script>
+</body>
+
+</html>

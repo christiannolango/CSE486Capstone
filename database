@@ -1,0 +1,124 @@
+--CREATE DATABASE capstone_database;
+
+
+
+CREATE TYPE design AS ENUM ('GWA','FBAT','Quantitative');
+CREATE TYPE disorder_t AS ENUM ('reading', 'speech', 'learning');
+CREATE TYPE population AS ENUM ('African', 'Ad Mixed American', 'East Asian', 'European', 'South Asian', 'All');
+CREATE TYPE ethnicity AS ENUM ('CHB', 'JPT', 'CHS', 'CDX', 'KHV', 'CEU', 'TSI', 'FIN', 'GBR', 'IBS', 'YRI', 'LWK', 'GWD', 'MSL', 'ESN', 'ASW', 'ACB', 'MXL', 'PUR', 'CLM', 'PEL', 'GIH', 'PJL', 'BEB', 'STU', 'ITU');
+CREATE TYPE type_of_stud AS ENUM ('GWAS', 'Chromosome #', 'Other', 'cSNP', 'Pooled', 'Candidate Gene');
+CREATE TYPE diagnosis AS ENUM ('C', 'F', 'B', 'L');
+CREATE TYPE source_type AS ENUM ('CL', 'PO', 'CO');
+CREATE TYPE test_type AS ENUM ('Allele codominant', 'Dominant', 'Recessive', 'Over-dominant', 'Additive');
+
+CREATE TABLE Study (
+  id INTEGER,
+  pmid VARCHAR,
+  design design,
+  type_of_study type_of_stud,
+  ascertainment population,
+  source source_type,
+  platform VARCHAR,
+  the_domain disorder_t,
+  num_SNPs INTEGER,
+  num_polys INTEGER,
+  DX diagnosis,
+  Case_N INTEGER,
+  Case_perc_fem REAL,
+  Case_age REAL,
+  Control_N INTEGER,
+  Control_perc_fem REAL,
+  Control_age REAL,
+  num_families INTEGER,
+  num_affected INTEGER,
+  num_generations INTEGER,
+  mean_score REAL,
+  SD_score REAL,
+  measure_used VARCHAR,
+  disorder VARCHAR,
+  test test_type,
+  hyperlink VARCHAR,
+  PRIMARY KEY(id)
+);
+
+CREATE TYPE status AS ENUM ('low', 'intermediate', 'high');
+
+CREATE TABLE Gene (
+  id INTEGER,
+  name VARCHAR,
+  ensmbl_id INTEGER,
+  gene_chr VARCHAR,
+  gene_band INTEGER,
+  gene_start INTEGER,
+  gene_end INTEGER,
+  gene_risk_status status,
+  hyperlink VARCHAR,
+  PRIMARY KEY(id)
+);
+
+CREATE TYPE allele AS ENUM ('G', 'T', 'A', 'C');
+CREATE TABLE SNP (
+  id INTEGER,
+  SNP_id VARCHAR,
+  Meta_p_value REAL,
+  chromosome_location VARCHAR,
+  chromosome_band VARCHAR,
+  position INTEGER,
+  version VARCHAR,
+  odds_risk REAL,
+  odds_risk_lci REAL,
+  odds_risk_uci REAL,
+  ethnicity_1000_pop ethnicity,
+  REF_allele allele,
+  ALT_allele allele,
+  EFF_score REAL,
+  EFF_var REAL,
+  mtc_pvalue REAL,
+  snp_risk status,
+  test VARCHAR,
+  hyperlink VARCHAR,
+  PRIMARY KEY(Id) 
+);
+
+
+
+CREATE TABLE Disorders (
+  id INTEGER,
+  name disorder_t,
+  PRIMARY KEY(Id)
+);
+
+CREATE TABLE has_a (
+  Gene_id INTEGER,
+  SNP_id INTEGER,
+  PRIMARY KEY(Gene_id, SNP_id),
+  FOREIGN KEY (Gene_id) REFERENCES Gene,
+  FOREIGN KEY (SNP_id) REFERENCES SNP
+);
+
+CREATE TABLE features (
+  Study_id INTEGER,
+  Gene_id INTEGER,
+  PRIMARY KEY(Study_id, Gene_id),
+  FOREIGN KEY (Study_id) REFERENCES Study,
+  FOREIGN KEY (Gene_id) REFERENCES Gene
+);
+
+CREATE TABLE analyzed (
+  Study_id INTEGER,
+  SNP_id INTEGER,
+  PRIMARY KEY(Study_id, SNP_id),
+  FOREIGN KEY (Study_id) REFERENCES Study,
+  FOREIGN KEY (SNP_id) REFERENCES SNP
+);
+
+CREATE TABLE related_to (
+  disorders_id INTEGER,
+  SNP_id INTEGER,
+  PRIMARY KEY(disorders_id, SNP_id),
+  FOREIGN KEY (disorders_id) REFERENCES Disorders,
+  FOREIGN KEY (SNP_id) REFERENCES SNP 
+);
+
+INSERT INTO Study VALUES(1, '27098879', 'GWA', 'candidate', 'East Asian', 'PO', '4:-plex SNPscan',
+'reading',18, NULL,'b',195, 36, 10.99, 196, 38, 10.99,NULL,NULL, NULL, NULL, NULL, NULL, 'Dyslexia', NULL);
