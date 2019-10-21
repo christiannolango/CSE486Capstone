@@ -4,10 +4,19 @@ from examples.models import study
 from examples.models import SimpleTable
 from examples.models import SNP_entry
 from django.template.response import TemplateResponse
-
+import simplejson as json
 # Create your views here.
 def home(request):
 	return render(request, 'pages/home.html')
+	
+def get_pmId(request, pmId):
+	if request.method == 'GET':
+		try:
+			study1 = study.objects.get(pmid=pmId)
+			response = json.dumps([{ 'pmId = ': pmId}])
+		except:
+			response = json.dumps([{ 'Error': 'pmId does not exist'}])
+		return HttpResponse(response, content_type='text/json')
 	
 def index(request):
 	return render(request, 'pages/index.html')
