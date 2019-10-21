@@ -12,5 +12,5 @@ urlpatterns = [
     path('database/', views.database, name='pages-database'),
     path('gene/', views.gene, name = 'pages-gene'),
     path('search/', views.search, name = 'pages-search'),
-	path('<str:pmId>', views.get_pmId),
+	path('search/getId/', views.get_studyId),
 ]
