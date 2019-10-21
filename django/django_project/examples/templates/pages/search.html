@@ -46,18 +46,21 @@
 
   <div style="position:relative; top:75px;" align="center">
     <div class="card" style="width: 60rem;">
-      <h3>Search by Gene </h3>
-      <input type="text" placeholder="e.g. APOE">
+      <h3>Search by Study </h3>
 	  
-		<form action="getId/" method="GET">
-		<textarea name="text_box">This is the value</textarea>
+		<form action="getStudyId/" method="GET">
+		<textarea name="text_box" ></textarea>  
 		<button type="submit">Submit</button>
 		</form>
 			
     <br>
     <div class="card" style="width: 60rem;">
         <h3>Search by SNP </h3>
-        <input type="text" placeholder="e.g. SNP-123">
+		
+        <form action="getEntryId/" method="GET">
+		<textarea name="text_box" ></textarea>  
+		<button type="submit">Submit</button>
+		</form>
     </div>
     <div class="card" style="width: 60rem;">
         <h3>Search by SNP </h3>

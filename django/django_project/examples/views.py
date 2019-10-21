@@ -16,6 +16,14 @@ def get_studyId(request):
 		data = study.objects.filter(study_id=studyId)
 		table = SimpleTable(data, template_name='django_tables2/bootstrap-responsive.html')
 		return render(request, 'pages/database.html', {'table': table})
+		
+def get_entryId(request):
+	if request.method == 'GET':
+		entryId = request.GET['text_box']
+		data = SNP_entry.objects.all()
+		data = SNP_entry.objects.filter(entry_id=entryId)
+		table = SimpleTable(data, template_name='django_tables2/bootstrap-responsive.html')
+		return render(request, 'pages/database.html', {'table': table})
 
 	
 def index(request):

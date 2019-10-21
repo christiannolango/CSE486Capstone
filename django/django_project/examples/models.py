@@ -37,7 +37,7 @@ class study(models.Model):
 
 
 class SNP_entry(models.Model):
-    enrty_id = models.IntegerField(primary_key=True)
+    entry_id = models.IntegerField(primary_key=True)
     SNP_id = models.CharField(max_length=30)
     Meta_p_value = models.FloatField()
     SNP_chromosome_location = models.CharField(max_length=30)
