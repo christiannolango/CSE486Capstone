@@ -40,6 +40,9 @@
         <li class="nav-item">
           <a class="nav-link" href="#" onclick="location.href='{% url 'pages-contacts' %}'">Contact</a>
         </li>
+        <li class="nav-item">
+          <a class="btn btn-primary" href="#" onclick="location.href='{% url 'pages-search' %}'">Search</a>
+        </li>
       </ul>
     </div>
   </nav>
@@ -47,29 +50,38 @@
   <div style="position:relative; top:75px;" align="center">
     <div class="card" style="width: 60rem;">
       <h3>Search by Study </h3>
-	  
-		<form action="getStudyId/" method="GET">
-		<textarea name="text_box" ></textarea>  
-		<button type="submit">Submit</button>
-		</form>
-			
+      <form action="getStudyId/" method="GET">
+        <input type="text" name="text_box" placeholder="e.g. APOE">
+		   <!-- <textarea name="text_box" ></textarea> -->
+        <button type="submit">Submit</button>
+        <br>
+        <br>
+		  </form>
+		</div>
     <br>
     <div class="card" style="width: 60rem;">
         <h3>Search by SNP </h3>
-		
         <form action="getEntryId/" method="GET">
-		<textarea name="text_box" ></textarea>  
-		<button type="submit">Submit</button>
-		</form>
+          <input type="text" name="text_box" placeholder="e.g. SNP-123">
+		      <!-- <textarea name="text_box" ></textarea> -->
+          <button type="submit">Submit</button>
+          <br>
+          <br>
+		    </form>
     </div>
+    <br>
     <div class="card" style="width: 60rem;">
-        <h3>Search by SNP </h3>
+        <h3>Search by Disorder </h3>
+        <form>
         <select>
             <option value="reading">Reading</option>
             <option value="speech">Speech</option>
             <option value='learning'>Learning</option>
         </select>
         <button type="submit">Submit</button>
+        <br>
+        <br>
+      </form>
     </div>
     
 
