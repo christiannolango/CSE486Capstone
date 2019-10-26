@@ -6,3 +6,4 @@ from examples.models import SNP_entry
 
 admin.site.register(study)
 admin.site.register(SNP_entry)
+

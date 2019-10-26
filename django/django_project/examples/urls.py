@@ -12,6 +12,6 @@ urlpatterns = [
     path('database/', views.database, name='pages-database'),
     path('gene/', views.gene, name = 'pages-gene'),
     path('search/', views.search, name = 'pages-search'),
-	path('search/getStudyId/', views.get_studyId),
+	path('search/getGENE/', views.get_GENE),
 	path('search/getEntryId/', views.get_entryId),
 ]

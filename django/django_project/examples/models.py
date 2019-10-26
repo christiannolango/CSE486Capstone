@@ -1,6 +1,7 @@
 from django.db import models
 from django import forms
 import django_tables2 as tables
+from itertools import chain
 
 
 # Create your models here.
@@ -70,7 +71,9 @@ class SNP_entry(models.Model):
     def __unicode__(self):
         self.enrty_id
 
-
 class SimpleTable(tables.Table):
-    class Meta:
-        model = study
+	entry_id = tables.Column()
+	study_id = tables.Column(accessor="study_id.study_id")
+	disorder = tables.Column()
+	odds_risk = tables.Column()
+	pmid = tables.Column(accessor="study_id.pmid")
