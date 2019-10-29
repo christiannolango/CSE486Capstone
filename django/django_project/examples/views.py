@@ -22,6 +22,7 @@ def get_GENE(request):
 		table = SimpleTable(data2, template_name='django_tables2/bootstrap-responsive.html')
 		return render(request, 'pages/database.html', {'table': table})
 		
+		
 def get_entryId(request):
 	if request.method == 'GET':
 		entryId = request.GET['text_box']
