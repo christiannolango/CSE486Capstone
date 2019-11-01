@@ -14,4 +14,5 @@ urlpatterns = [
     path('search/', views.search, name = 'pages-search'),
 	path('search/getGENE/', views.get_GENE),
 	path('search/getSNP/', views.get_SNP),
+	path('search/getDisorder/', views.get_Disorder),
 ]

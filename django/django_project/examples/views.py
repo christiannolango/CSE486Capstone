@@ -29,6 +29,15 @@ def get_SNP(request):
 		table = SimpleTable(filterSNP, template_name='django_tables2/bootstrap-responsive.html')
 		return render(request, 'pages/database.html', {'table': table})
 		
+def get_Disorder(request):
+	if request.method == 'GET':
+		disorder_num = request.GET['dropdown']
+		studyData = study.objects.all()
+		SNPData = SNP_entry.objects.all()
+		filterDisorder = SNP_entry.objects.filter(disorder=disorder_num)
+		table = SimpleTable(filterDisorder, template_name='django_tables2/bootstrap-responsive.html')
+		return render(request, 'pages/database.html', {'table': table})
+		
 def index(request):
 	return render(request, 'pages/index.html')
 
