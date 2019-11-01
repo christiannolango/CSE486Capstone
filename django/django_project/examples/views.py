@@ -12,14 +12,23 @@ def home(request):
 	
 def get_GENE(request):
 	if request.method == 'GET':
-		studyId = request.GET['text_box']
-		data1 = study.objects.all()
-		data2 = SNP_entry.objects.all()
-		data1 = study.objects.filter(study_id=studyId)
-		studyDetails = data1[0].study_id
-		data2 = SNP_entry.objects.filter(study_id = studyDetails)
+		geneName = request.GET['text_box']
+		studyData = study.objects.all()
+		SNPData = SNP_entry.objects.all()
+		filterGene = SNP_entry.objects.filter(gene_name=geneName)
+		#studyDetails = filterGene[0].study_id
+		#answerGene = study.objects.filter(study_id = studyDetails)
+		table = SimpleTable(filterGene, template_name='django_tables2/bootstrap-responsive.html')
+
+	
+		#studyId = request.GET['text_box']
+		#data1 = study.objects.all()
+		#data2 = SNP_entry.objects.all()
+		#data1 = study.objects.filter(study_id=studyId)
+		#studyDetails = data1[0].study_id
+		#data2 = SNP_entry.objects.filter(study_id = studyDetails)
 		#data3 = chain(data1, data2)
-		table = SimpleTable(data2, template_name='django_tables2/bootstrap-responsive.html')
+		#table = SimpleTable(data2, template_name='django_tables2/bootstrap-responsive.html')
 		return render(request, 'pages/database.html', {'table': table})
 		
 		
