@@ -5,18 +5,67 @@ from itertools import chain
 
 
 # Create your models here.
+
+
+
 class study(models.Model):
+    enum_design = (
+        ('GWA', 'GWA'),
+        ('FBAT', 'FBAT'),
+        ('Quantitative', 'Quantitative'),
+    )
+    enum_disorder_t = (
+        ('reading', 'reading'),
+        ('speech', 'speech'),
+        ('learning', 'learning'),
+    )
+    enum_population = (
+        ('African', 'African'),
+        ('Ad Mixed American', 'Ad Mixed American'),
+        ('East Asian', 'East Asian'),
+        ('European', 'European'),
+        ('South Asian', 'South Asian'),
+        ('All', 'All'),
+    )
+    enum_type_of_stud = (
+        ('GWAS', 'GWAS'),
+        ('Chromosome #', 'Chromosome #'),
+        ('Other', 'Other'),
+        ('cSNP', 'cSNP'),
+        ('Pooled', 'Pooled'),
+        ('Candidate Gene', 'Candidate Gene'),
+    )
+    enum_diagnosis = (
+        ('C', 'C'),
+        ('F', 'F'),
+        ('B', 'B'),
+        ('L', 'L'),
+    )
+    enum_source_type = (
+        ('CL', 'CL'),
+        ('PO', 'PO'),
+        ('CO', 'CO'),
+    )
+    enum_test_type = (
+        ('Allele codominant', 'Allele codominant'),
+        ('Dominant', 'Dominant'),
+        ('Recessive', 'Recessive'),
+        ('Over-dominant', 'Over-dominant'),
+        ('Additive', 'Additive'),
+    )
+
+
     study_id = models.IntegerField(primary_key=True)
     pmid = models.CharField(max_length=30)
-    design = models.CharField(max_length=30)
-    type_of_study = models.CharField(max_length=30)
-    ascertainment = models.CharField(max_length=30)
-    source = models.CharField(max_length=30)
+    design = models.CharField(max_length=30, choices=enum_design)
+    type_of_study = models.CharField(max_length=30, choices=enum_type_of_stud)
+    ascertainment = models.CharField(max_length=30, choices=enum_population)
+    source = models.CharField(max_length=30, choices=enum_source_type)
     platform = models.CharField(max_length=30)
-    the_domain = models.CharField(max_length=30)
+    the_domain = models.CharField(max_length=30, choices=enum_disorder_t)
     num_SNPs = models.IntegerField()
     num_polys = models.IntegerField()
-    DX = models.CharField(max_length=30)
+    DX = models.CharField(max_length=30, choices=enum_diagnosis)
     Case_N = models.IntegerField()
     Case_perc_fem = models.FloatField()
     Case_age = models.FloatField()
@@ -30,7 +79,7 @@ class study(models.Model):
     SD_score = models.FloatField()
     measure_used = models.CharField(max_length=30)
     disorder = models.CharField(max_length=30)
-    test = models.CharField(max_length=30)
+    test = models.CharField(max_length=30, choices=enum_test_type)
     hyperlink = models.CharField(max_length=30)
 
     def __unicode__(self):
@@ -38,6 +87,38 @@ class study(models.Model):
 
 
 class SNP_entry(models.Model):
+
+    enum_ethnicity = (
+        ('CHB', 'CHB'),
+        ('JPT', 'JPT'),
+        ('CHS', 'CHS'),
+        ('CDX', 'CDX'),
+        ('KHV', 'KHV'),
+        ('CEU', 'CEU'),
+        ('TSI', 'TSI'),
+        ('FIN', 'FIN'),
+        ('GBR', 'GBR'),
+        ('IBS', 'IBS'),
+        ('YRI', 'YRI'),
+        ('LWK', 'LWK'),
+        ('GWD', 'GWD'),
+        ('MSL', 'MSL'),
+        ('ESN', 'ESN'),
+        ('ASW', 'ASW'),
+        ('ACB', 'ACB'),
+        ('MXL', 'MXL'),
+        ('PUR', 'PUR'),
+        ('CLM', 'CLM'),
+        ('PEL', 'PEL'),
+        ('GIH', 'GIH'),
+        ('PJL', 'PJL'),
+        ('BEB', 'BEB'),
+        ('STU', 'STU'),
+        ('ITU', 'ITU'),
+
+    )
+
+
     entry_id = models.IntegerField(primary_key=True)
     SNP_id = models.CharField(max_length=30)
     Meta_p_value = models.FloatField()
@@ -48,7 +129,7 @@ class SNP_entry(models.Model):
     odds_risk = models.FloatField()
     odds_risk_lci = models.FloatField()
     odds_risk_uci = models.FloatField()
-    ethnicity_1000_pop = models.CharField(max_length=30)
+    ethnicity_1000_pop = models.CharField(max_length=30, choices=enum_ethnicity)
     REF_allele = models.CharField(max_length=30)
     ALT_allele = models.CharField(max_length=30)
     EFF_score = models.FloatField()
