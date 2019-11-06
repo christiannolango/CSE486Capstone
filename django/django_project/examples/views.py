@@ -29,11 +29,11 @@ def get_GENE(request):
 		
 		#write headers
 		worksheet1.write(row,0,"studyId")
-		
 		worksheet1.write(row,1,"Pmid")
 		worksheet1.write(row,2,"design")
 		worksheet1.write(row,3,"type of study")
 		
+		worksheet2.write(row, 0, "entryId")
 		row=1
 		#write data
 		for g in filterGene: 
@@ -42,6 +42,7 @@ def get_GENE(request):
 			worksheet1.write(row,col+1,g.study_id.pmid)
 			worksheet1.write(row,col+2,g.study_id.design)
 			worksheet1.write(row,col+3,g.study_id.type_of_study)
+			worksheet2.write(row, col, g.entry_id)
 			row+=1
 		workbook.close()
 		
