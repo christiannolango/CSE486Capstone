@@ -90,7 +90,7 @@ def input(request):
 #Trigger Rscript
 def gene(request):
 
-	retcode = subprocess.call("Rscript --vanilla examples/easyR.r", shell=True)
+	retcode = subprocess.call("Rscript --vanilla examples/meta_analysis_SNP.r", shell=True)
 	return render(request, 'pages/gene.html')
 
 def search(request):
