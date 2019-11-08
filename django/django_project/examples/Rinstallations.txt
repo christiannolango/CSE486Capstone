@@ -1,0 +1,9 @@
+Open R terminal as administrator and run
+
+install.packages("dplyr")
+install.packages("meta")
+install.packages("readxl")
+install.packages("robumeta")
+install.packages("irr")
+install.packages("here")
+install.packages("forestplot")
