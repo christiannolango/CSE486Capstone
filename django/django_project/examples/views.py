@@ -4,12 +4,18 @@ from examples.models import study
 from examples.models import SimpleTable
 from examples.models import SNP_entry
 from django.template.response import TemplateResponse
+from django.shortcuts import render
 from itertools import chain
 import simplejson as json
 import xlsxwriter
 import subprocess
 import os
+import xlrd
+
 # Create your views here.
+
+currentGene = "NULL"
+
 def home(request):
 	return render(request, 'pages/home.html')
 	
@@ -40,8 +46,8 @@ def get_SNP(request):
 		filterSNP = SNP_entry.objects.filter(SNP_id=SNPname)
 
 		# WRITE TO EXCEL FILE
-		if os.path.exists('SNPData.xlsx'): os.remove('SNPData.xlsx')
-		workbook = xlsxwriter.Workbook('SNPData.xlsx')
+		if os.path.exists('SNPData.xlsx'): os.remove('geneData.xlsx')
+		workbook = xlsxwriter.Workbook('geneData.xlsx')
 		worksheet1 = workbook.add_worksheet('studyData')
 		worksheet2 = workbook.add_worksheet('SNP_entryData')
 
@@ -58,8 +64,8 @@ def get_Disorder(request):
 		filterDisorder = SNP_entry.objects.filter(disorder=disorder_num)
 
 		# WRITE TO EXCEL FILE
-		if os.path.exists('DisorderData.xlsx'): os.remove('DisorderData.xlsx')
-		workbook = xlsxwriter.Workbook('DisorderData.xlsx')
+		if os.path.exists('geneData.xlsx'): os.remove('geneData.xlsx')
+		workbook = xlsxwriter.Workbook('geneData.xlsx')
 		worksheet1 = workbook.add_worksheet('studyData')
 		worksheet2 = workbook.add_worksheet('SNP_entryData')
 
@@ -92,8 +98,12 @@ def gene(request):
 
 
 	retcode = subprocess.call("Rscript --vanilla examples/meta_analysis_SNP.r", shell=True)
-
-	return render(request, 'pages/gene.html')
+	wb=xlrd.open_workbook("geneData.xlsx")
+	sheet = wb.sheet_by_index(1)
+	context = {
+		"name": sheet.cell_value(1, 20)
+	}
+	return render(request, 'pages/gene.html', context)
 
 def search(request):
 	return render(request, 'pages/search.html')
