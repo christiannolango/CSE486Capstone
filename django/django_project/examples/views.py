@@ -101,7 +101,7 @@ def gene(request):
 	wb=xlrd.open_workbook("geneData.xlsx")
 	sheet = wb.sheet_by_index(1)
 	context = {
-		"name": sheet.cell_value(1, 20)
+		"name": sheet.cell_value(1, 19)
 	}
 	return render(request, 'pages/gene.html', context)
 
