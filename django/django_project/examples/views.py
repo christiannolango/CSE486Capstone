@@ -172,6 +172,7 @@ def excel_data(workbook, worksheet1, worksheet2, filter):
 	worksheet2.write(row, 25, "gene_risk_status")
 	worksheet2.write(row, 26, "gene_hyperlink")
 	worksheet2.write(row, 27, "disorder")
+	worksheet2.write(row, 28, "study_id")
 
 	row = 1
 	# write data

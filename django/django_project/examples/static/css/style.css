@@ -18,6 +18,15 @@ body {
     border-radius: 5px;
 }
 
+.methods {
+    float:left;
+    clear:left;
+    position:relative;  
+    height: 200px;
+    border: 2px solid lightgray;
+    margin: 5px;
+    border-radius: 5px;
+}
 
 .clearfix {
     overflow:auto;

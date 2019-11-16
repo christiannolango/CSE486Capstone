@@ -17,13 +17,15 @@ meta_SNP <- read_excel("./geneData.xlsx",
 
 meta_SNP$SNP_id <- as.character(meta_SNP$SNP_id)
 meta_SNP$SNP_id <- as.factor(meta_SNP$SNP_id)
-meta <- meta_SNP %>%
-  mutate(eff_se = sqrt(EFF_var))
+meta_SNP$SNP_id <- as.character(meta_SNP$study_id)
+meta_SNP$SNP_id <- as.factor(meta_SNP$study_id)
+#meta <- meta_SNP %>%
+#  mutate(eff_se = sqrt(EFF_var))
 
-con_m <- robu(eff_se ~ 1, meta, studynum = SNP_id, var.eff.size = EFF_var, rho = 0.8, small = TRUE)
-con_m
+result <- robu(EFF_score ~ 1, EFF_var, studynum = study_id, var.eff.size = EFF_var, rho = 0.8, small = TRUE)
+result
 
 png(file='./examples/static/plots/forestplot.png')
-forest.robu(con_m, es.lab = "SNP_id", study.lab = "entryId",
-            "Effect Size" = eff_se)
+forest.robu(result, es.lab = "SNP_id", study.lab = "entryId",
+            "Effect Size" = EFF_score)
 dev.off()
