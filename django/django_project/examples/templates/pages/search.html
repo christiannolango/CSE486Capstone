@@ -53,6 +53,11 @@
       <form action="getGENE/" method="GET">
         <input type="text" name="text_box" placeholder="e.g. APOE">
 		   <!-- <textarea name="text_box" ></textarea> -->
+        <select name = "dropdown">
+            <option value="reading">Reading</option>
+            <option value="speech">Speech</option>
+            <option value="learning">Learning</option>
+        </select>
         <button type="submit">Submit</button>
         <br>
         <br>
@@ -64,10 +69,15 @@
         <form action="getSNP/" method="GET">
           <input type="text" name="text_box" placeholder="e.g. SNP-123">
 		      <!-- <textarea name="text_box" ></textarea> -->
+          <select name = "dropdown">
+            <option value="reading">Reading</option>
+            <option value="speech">Speech</option>
+            <option value="learning">Learning</option>
+          </select>
           <button type="submit">Submit</button>
           <br>
           <br>
-		    </form>
+        </form>
     </div>
     <br>
     <div class="card" style="width: 60rem;">
