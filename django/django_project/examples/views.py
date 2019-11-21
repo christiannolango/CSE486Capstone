@@ -22,9 +22,10 @@ def home(request):
 def get_GENE(request):
 	if request.method == 'GET':
 		geneName = request.GET['text_box']
+		disorder_num = request.GET['dropdown']
 		studyData = study.objects.all()
 		SNPData = SNP_entry.objects.all()
-		filterGene = SNP_entry.objects.filter(gene_name=geneName)
+		filterGene = SNP_entry.objects.filter(gene_name=geneName).filter(disorder=disorder_num)
 		
 		#WRITE TO EXCEL FILE
 		if os.path.exists('geneData.xlsx'): os.remove('geneData.xlsx')
@@ -41,9 +42,10 @@ def get_GENE(request):
 def get_SNP(request):
 	if request.method == 'GET':
 		SNPname = request.GET['text_box']
+		disorder_num = request.GET['dropdown']
 		studyData = study.objects.all()
 		SNPData = SNP_entry.objects.all()
-		filterSNP = SNP_entry.objects.filter(SNP_id=SNPname)
+		filterSNP = SNP_entry.objects.filter(SNP_id=SNPname).filter(disorder=disorder_num)
 
 		# WRITE TO EXCEL FILE
 		if os.path.exists('SNPData.xlsx'): os.remove('geneData.xlsx')
