@@ -76,21 +76,22 @@
           <div id="bios" align="left">
             <div class="methods clearfix">
               <h6>Finding Relevant Studies</h6>
-                <p>How to find relevant studies</p>
+                <p>Studies were found on Google Scholar and PubMed based on key filters, like “reading,” “learning,” “speech” disorders. Studies were discarded if they did not have the confidence interval or the effect score for the particular SNP. </p>
             </div>
             <div>
               <h6>Extracting Data from Studies</h6>
-              <p>How we extracted data from studies</p>
+              <p> The key data extracted from studies included author’s last name, year of the study, type of study, ethnic population, disorder, SNP name, gene name, effect score, effect variance.</p>
             </div>
             <div class="methods">
                 <h6>Database Design</h6>
               <p>
-                  General design of database structure (brief summary, what software, what logic behind design, how it communicates, etc
+                The database was stored in PostgreSQL. There were two tables: one for storing the study information and another for storing the SNP and gene information. The SNP table references the study table with a foreign key. This design decision arose from the desire to diminish data entry time, but it is not the most optimal in terms of time complexity. 
               </p>
             </div>
             <div class="methods">
                 <h6>Statistical Analysis</h6>
               <p>
+                  Statistical analysis and meta-analysis was performed with R code. The robu function performed the meta analysis, factored by the study where data came from. A forest plot was also generated with R.
               </p>
             </div>
             <div class="methods">
