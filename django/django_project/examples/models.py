@@ -54,7 +54,8 @@ class study(models.Model):
         ('Additive', 'Additive'),
     )
 
-
+    Author = models.CharField(max_length=30, blank=True)
+    Year = models.CharField(max_length=30, blank=True)
     study_id = models.IntegerField(primary_key=True)
     pmid = models.CharField(max_length=30, blank=True)
     design = models.CharField(max_length=30, choices=enum_design, blank=True)
@@ -120,8 +121,6 @@ class SNP_entry(models.Model):
 
 
     entry_id = models.IntegerField(primary_key=True)
-    Author = models.CharField(max_length=30, blank=True)
-    Year = models.CharField(max_length=30, blank=True)
     SNP_id = models.CharField(max_length=30, blank=True)
     Meta_p_value = models.FloatField(blank=True, null=True)
     SNP_chromosome_location = models.CharField(max_length=30, blank=True)
@@ -156,6 +155,8 @@ class SNP_entry(models.Model):
 
 class SimpleTable(tables.Table):
 #study
+    author = tables.Column(accessor="study_id.Author")
+    year = tables.Column(accessor="study_id.Year")
     study_id = tables.Column(accessor="study_id.study_id")
     pmid = tables.Column(accessor="study_id.pmid")
     design = tables.Column(accessor="study_id.design")
