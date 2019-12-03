@@ -76,22 +76,23 @@
           <div id="bios" align="left">
             <div class="methods clearfix">
               <h6>Finding Relevant Studies</h6>
-                <p>Studies were found on Google Scholar and PubMed based on key filters, like “reading,” “learning,” “speech” disorders. Studies were discarded if they did not have the confidence interval or the effect score for the particular SNP. </p>
+                <p>We conducted a literature search using Google Scholar and PubMed to find relevant studies. For the dyslexia articles, the key terms were gene*, read*, dyslexia, human, child, and adol*. We removed duplicates and screened articles for inclusion. Our inclusion criteria for all disorders were: (a) human subjects, (b) case-control design, (c) odds or risk ratio with confidence interval, (d) provided enough data about the methods and sample to fill out the data entry form, and (e) provided data at either the single variant or gene level.</p>
             </div>
             <div>
               <h6>Extracting Data from Studies</h6>
-              <p> The key data extracted from studies included author’s last name, year of the study, type of study, ethnic population, disorder, SNP name, gene name, effect score, effect variance.</p>
+              <p>The key data extracted from studies included author’s last name, year of the study, type of study, ethnic population, disorder, SNP name, gene name, effect score, confidence interval, and (if provided) effect variance. When necessary, we calculated appropriate statistics.</p>
             </div>
             <div class="methods">
                 <h6>Database Design</h6>
               <p>
-                The database was stored in PostgreSQL. There were two tables: one for storing the study information and another for storing the SNP and gene information. The SNP table references the study table with a foreign key. This design decision arose from the desire to diminish data entry time, but it is not the most optimal in terms of time complexity. 
+                The database was stored in PostgreSQL. There were two tables: one for storing the study information and another for storing the SNP and gene information. The SNP table references the study table with a foreign key. This design decision arose from the desire to diminish data entry time, but it is not the most optimal in terms of time complexity.  
               </p>
             </div>
             <div class="methods">
                 <h6>Statistical Analysis</h6>
               <p>
-                  Statistical analysis and meta-analysis was performed with R code. The robu function performed the meta analysis, factored by the study where data came from. A forest plot was also generated with R.
+                We conducted our statistical analysis using R (R Core Team, 2017). We used robust variance estimation to conduct the meta-analysis, as this would allow studies to have multiple effect sizes. Robust variance estimation nests effect sizes within studies and determines the relevant weighting for each study’s effect sizes. When there is only one effect size per study, as occurs when conducting a single SNP meta-analysis, studies have relatively equal weight. When performing gene wide meta-analyses, each study is able to contribute all provided SNP effect sizes for that gene; thus, allowing for a more accurate understanding of the effect size for that gene. 
+                All meta-analyses are random effect models. The “robumeta” package (CITATION NEEDED) is used to perform the meta-analysis. Additionally forest plots are generated for each meta-analysis using robumeta.              
               </p>
             </div>
             <div class="methods">
